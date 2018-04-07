@@ -14,6 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print(BASE_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -119,9 +120,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-PROJECT_ROOT = os.path.join(BASE_DIR, 'anechoic')
-STATIC_ROOT= os.path.join(PROJECT_ROOT, 'staticfiles/')
+STATIC_ROOT= os.path.join(BASE_DIR, 'staticfiles/')
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT,'static/'),
+    os.path.join(BASE_DIR,'static/'),
 )
 
