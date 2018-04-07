@@ -26,7 +26,7 @@ SECRET_KEY = '6vbdke9z%b7i%84*b0u$6dkcskx(!(^b+w@#+t^9g6n-vul#qr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['anechoic.herokuapp.com']
+ALLOWED_HOSTS = ['anechoic.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -125,4 +125,3 @@ STATIC_ROOT= os.path.join(BASE_DIR, 'staticfiles/')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static/'),
 )
-
