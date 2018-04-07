@@ -5,17 +5,18 @@
 {% endblock %}
 
 {% block body %}
-
-     <div class="login">
+  <div id="body-content" class="login">
 
          {% if messages %}
+         <div class="content-box">
             <ul>
                 {% for message in messages %}
                 <li>{{ message }}</li>
                 {% endfor %}
             </ul>
+          </div>
         {% endif %}
-
+        <div class="content-box">
         <h1>Create account</h1>
 
          <form method="post" >
@@ -28,6 +29,6 @@
                 </tr>
              </table>
          </form>
-     </div>
-
+       </div>
+</div>
 {% endblock %}
