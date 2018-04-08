@@ -22,8 +22,14 @@ def getPositions(request):
         positions = Position.objects.all()
         for position in positions:
             if 'p' + str(position.id) in request.POST:
-                newUserPosition = UserPosition(user=user, position=position, rating=int(request.POST['p' + str(position.id)]))
-                newUserPosition.save()
+                try:
+                    old_user_position = user.userposition_set.filter(position=position).get()
+                    old_user_position.rating = int(request.POST['p' + str(position.id)])
+                    old_user_position.save()
+                    print("We updated the old one!")
+                except:
+                    new_user_position = UserPosition(user=user, position=position, rating=int(request.POST['p' + str(position.id)]))
+                    new_user_position.save()
         return redirect('/')
     else:
         context['positionQuestions'] = Position.objects.all()
