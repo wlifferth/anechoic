@@ -38,6 +38,8 @@ def getPositions(request):
 def dashboard(request):
     context = {}
     user = request.user
+    if not user.is_authenticated:
+        return render(request, 'main/splash.html', context)
     positions_to_show = []
     for userPosition in UserPosition.objects.filter(user=user):
         if userPosition.rating < 5:

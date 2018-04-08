@@ -1,0 +1,77 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block body %}
+<style type="text/css">
+body {
+    background-image: url('{% static 'capitolBuilding.jpeg' %}');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.splash-logo {
+  max-width: 100%;
+}
+
+.content-box {
+  margin-top: 40px;
+}
+
+.content-box-title {
+  color: white;
+  font-weight: bold;
+}
+.content-box .content-box-title {
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.glyphicon {
+    font-size: 80px;
+}
+
+</style>
+<div id="splash-background">
+  <div class="row">
+  <div class="col-xs-4 col-xs-offset-4">
+  <img src="{% static 'VerticalLogo.png' %}" class="splash-logo"/>
+  <div class="content-box-title text-center">
+    Escape your echo chamber.
+  </div>
+</div>
+</div>
+</div>
+<div id="body-content">
+<div class="content-box">
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="content-box-title text-center">
+        See where you stand
+      </div>
+      <div class="text-center">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+    </div>
+      Take a short survey to see which positions you have strong views on, and where you could use a voice from the other side.
+    </div>
+    <div class="col-xs-4">
+      <div class="content-box-title text-center">
+        Understand the other side
+      </div>
+      <div class="text-center">
+      <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+    </div>
+      Hear arguments from reasonable people who disagree with you.
+    </div>
+    <div class="col-xs-4">
+      <div class="content-box-title text-center">
+        Share your insights
+      </div>
+      <div class="text-center">
+      <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+    </div>
+      Contribute your own arguments for the positions you believe in.
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
