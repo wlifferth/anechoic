@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Position(models.Model):
      statement = models.CharField(max_length=100, verbose_name="Stated Position")
+     opposing_statement = models.CharField(max_length, verbose_name="Opposition to the Stated Position")
      description = models.TextField(max_length=1000, verbose_name="Description of position")
      link = models.URLField(verbose_name="More information")
 
