@@ -33,7 +33,7 @@ body {
 </style>
 <div id="splash-background">
   <div class="row">
-  <div class="col-xs-4 col-xs-offset-4">
+  <div class="col-xs-6 col-xs-offset-3">
   <img src="{% static 'VerticalLogo.png' %}" class="splash-logo"/>
   <div class="content-box-title text-center">
     Escape your echo chamber.
@@ -70,6 +70,55 @@ body {
       <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
     </div>
       Contribute your own arguments for the positions you believe in.
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-4 col-xs-offset-4">
+    <div class="buttons text-center">
+      <style>
+
+    .cta {
+      text-decoration: none;
+      color: white;
+      width: 200px;
+      height: 100px;
+      background: #F2385A;
+      position: relative;
+      margin: 30px;
+      top: 10px;
+      padding: 16px;
+      margin-bottom: 40px;
+      font-size: 50px;
+      border-radius: 10px;
+      box-shadow: 0px 15px 0px 0px #f02046, 0px 0px 20px 0px #bbb;
+      transition: all 0.2s;
+    }
+
+    .cta:hover {
+      top: 20px;
+      box-shadow: 0px 3px 0px 0px #f02046;
+      color: white;
+    }
+
+    a {
+      color: white;
+    }
+
+    .cta:active {
+      top: 24px;
+      box-shadow: 0px 7px 0px 0px #f02046;
+      color: white;
+    }
+
+    .button1 {
+      background-color: #F2385A;
+    }
+    .buttons {
+      padding-bottom: 80px;
+    }
+      </style>
+      <a class="button1 cta" href="/register">Sign Up</a>
     </div>
   </div>
 </div>
