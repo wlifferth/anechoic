@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Position(models.Model):
@@ -18,3 +19,8 @@ class Argument(models.Model):
 
     def __str__(self):
         return "Argument: \"{}\"".format(self.title)
+
+class UserPosition(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User that has this position")
+    position = models.ForeignKey(Position, on_delete=models.CASCADE, verbose_name="Position this user has commented on")
+    rating = models.IntegerField(verbose_name="This users level of agreement with the position")
