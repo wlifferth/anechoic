@@ -4,10 +4,11 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Position, UserPosition
+from .models import Position, UserPosition, Argument, ArgumentForm
 from django.contrib.auth.models import User
 
 from urllib.parse import urlparse
+import requests
 
 # Create your views here.
 
@@ -34,8 +35,10 @@ def dashboard(request):
     positions_to_show = []
     for userPosition in UserPosition.objects.filter(user=user):
         if userPosition.rating < 5:
+            userPosition.position.in_favor = True
             positions_to_show.append(userPosition.position)
         elif userPosition.rating > 5:
+            userPosition.position.in_favor = False
             positions_to_show.append(userPosition.position)
     for position in positions_to_show:
         position.top_arguments = position.argument_set.all()
@@ -46,6 +49,30 @@ def dashboard(request):
     # Get the four "best" arguments
     context['positions'] = positions_to_show
     return render(request, 'main/dashboard.html', context)
+
+def newArgument(request, positionID):
+    context = {}
+    if request.method == 'POST':
+        position = Position.objects.filter(id=positionID).get()
+        # process post data
+        f = ArgumentForm(request.POST)
+        rv = requests.get("http://api.linkpreview.net/?key={}&q={}".format("5ac98866364ea5848b84e5718149831a51c14e52c6e1f", f['link']))
+        if rv.json()['image'] == "":
+            preview_img = "http://www.google.com/s2/favicons?domain_url={}".format(f['link'])
+        else:
+            preview_img = rv.json()['image']
+        f.preview_img = rv.json()['image']
+        new_arg = f.save()
+        new_arg.prewiew_img = rv.json()['image']
+        new_arg.position = position
+        new_arg.author = request.user
+        new_arg.save()
+        return redirect('/')
+    else:
+        context['position'] = Position.objects.filter(id=positionID).get()
+        context['newArgumentForm'] = ArgumentForm()
+        return render(request, 'main/newArgument.html', context)
+
 
 def register(request):
     if request.method == 'POST':

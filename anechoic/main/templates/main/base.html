@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,700" rel="stylesheet">
 </head>
 
 <body>
@@ -16,7 +17,15 @@
       <div class="navbar-header">
           <a class="navbar-brand" href="/"><img id="top-logo" src="{% static 'main/logo.png' %}"></a>
     </div>
-      {% block menuextend %}{% endblock %}
+    <ul class="nav navbar-nav navbar-right">
+    {% if user.is_authenticated %}
+      <li><a href="/">Dashboard</a></li>
+      <li><a href="/accounts/logout">Log Out</a></li>
+    {% else %}
+      <li><a href="/accounts/login">Log In</a></li>
+    {% endif %}
+    {% block menuextend %}{% endblock %}
+    </ul>
   </div>
 </nav>
 

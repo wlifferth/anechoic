@@ -45,9 +45,13 @@ body {
 
 .content-box-title {
   font-size: 40px;
-  padding-left: 20px;
+  padding-bottom: 5px;
+  font-family: 'Crimson Text', serif;
 }
 
+input, textarea, select {
+  color: black;
+}
 
 
 /* Navbar colors */
@@ -215,4 +219,25 @@ body > .container {
     font-weight: bold;
     margin: -10px;
     color: white;
+}
+
+
+/* Preview */
+.preview-favicon {
+  min-width: 40px;
+}
+
+.preview-title {
+  font-size: 24px;
+  font-weight: bold;
+  font-family: 'Crimson Text', serif;
+}
+
+.preview-description {
+  font-family: 'Crimson Text', serif;
+}
+
+.position-box {
+  margin-top: 40px;
+  margin-bottom: 0px;
 }

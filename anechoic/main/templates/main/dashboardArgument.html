@@ -1,10 +1,15 @@
 <div class="dashboard-argument">
-  {{ argument.title }}
 <div class="preview">
-  <div class="previewTitle">
-    {{ argument.preview_title }}
+  <div class="row">
+    <div class="col-xs-2">
+      <img src="http://www.google.com/s2/favicons?domain_url={{ argument.link }}" class="preview-favicon"/>
+    </div>
+    <div class="preview-title col-xs-10">
+      {{ argument.title }}
+    </div>
+  </div class="col-xs-12 preview-description">
+  <i>
+    {{ argument.description }}
+  </i>
   </div>
-  <img src="{{ argument.preview_img }}"/>
-  {{ argument.preview_description}}
-</div>
-</div>
+  </div>

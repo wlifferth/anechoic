@@ -1,12 +1,36 @@
-<div class="position-row content-box">
-  <div class="conent-box-title">
-  {{ position.statement }}
-  </div>
-  <div class="arguments row">
+<div class="position-box content-box">
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            <div class="preface">
+                {% if position.in_favor %}
+                Arguments <i>for</i>:
+                {% else %}
+                Arguments <i>against</i>:
+                {% endif %}
+            </div>
+            <div class="content-box-title">
+                {{ position.statement }}
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="/position/{{ position.id }}/newArgument/">Have your own argument?</a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="/position/{{ position.id }}/newArgument/">Have your own argument?</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="arguments row">
     {% for argument in position.top_arguments %}
     <div class="col-xs-4">
-      {% include 'main/dashboardArgument.html' %}
+      <a href="{{ argument.link }}">
+        <div class="content-box">
+            {% include 'main/dashboardArgument.html' %}
+        </div>
+        </a>
     </div>
     {% endfor %}
-  </div>
 </div>
