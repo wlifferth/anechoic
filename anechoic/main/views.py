@@ -7,6 +7,8 @@ from django.http import HttpResponse
 from .models import Position, UserPosition
 from django.contrib.auth.models import User
 
+from urllib.parse import urlparse
+
 # Create your views here.
 
 def hello(request):
@@ -27,8 +29,22 @@ def getPositions(request):
         return render(request, 'main/positionSurvey.html', context=context)
 
 def dashboard(request):
-    user = request.user
     context = {}
+    user = request.user
+    positions_to_show = []
+    for userPosition in UserPosition.objects.filter(user=user):
+        if userPosition.rating < 5:
+            positions_to_show.append(userPosition.position)
+        elif userPosition.rating > 5:
+            positions_to_show.append(userPosition.position)
+    for position in positions_to_show:
+        position.top_arguments = position.argument_set.all()
+        for argument in position.top_arguments:
+            parsed_uri = urlparse(argument.link)
+            domain = '{uri.scheme}://{uri.netloc}/'.format(uri=parsed_uri)
+            argument.domain = domain
+    # Get the four "best" arguments
+    context['positions'] = positions_to_show
     return render(request, 'main/dashboard.html', context)
 
 def register(request):

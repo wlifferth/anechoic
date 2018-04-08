@@ -1,0 +1,12 @@
+<div class="position-row content-box">
+  <div class="conent-box-title">
+  {{ position.statement }}
+  </div>
+  <div class="arguments row">
+    {% for argument in position.top_arguments %}
+    <div class="col-xs-4">
+      {% include 'main/dashboardArgument.html' %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
