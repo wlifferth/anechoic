@@ -11,11 +11,13 @@ class Position(models.Model):
          return "Position: \"{}\"".format(self.statement)
 
 class Argument(models.Model):
+    SIDE = [("For", "For"), ("Against", "Against")]
     link = models.URLField(verbose_name="Link to Argument")
     title = models.CharField(max_length=100, verbose_name="Title of argument")
     description = models.TextField(max_length=1000, verbose_name="Description of argument")
     rating = models.FloatField(verbose_name="Rating of argument")
     position = models.ForeignKey(Position, on_delete=models.CASCADE)
+    side = models.CharField(max_length=10, verbose_name="Whether an argument is for or against a position", choices=SIDE, default="For")
 
     def __str__(self):
         return "Argument: \"{}\"".format(self.title)
