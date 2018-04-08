@@ -12,21 +12,22 @@ from django.contrib.auth.models import User
 def hello(request):
     return HttpResponse("Hello!")
 
-def getPositions(request, username):
+def getPositions(request):
+    user = request.user
     context = {}
     if request.method == 'POST':
         positions = Position.objects.all()
-        user = User.objects.filter(username=username).get();
         for position in positions:
             if 'p' + str(position.id) in request.POST:
                 newUserPosition = UserPosition(user=user, position=position, rating=int(request.POST['p' + str(position.id)]))
                 newUserPosition.save()
-        return HttpResponse("You successfully submitted the form!")
+        return redirect('/')
     else:
         context['positionQuestions'] = Position.objects.all()
         return render(request, 'main/positionSurvey.html', context=context)
 
-def dashboard(request, username):
+def dashboard(request):
+    user = request.user
     context = {}
     return render(request, 'main/dashboard.html', context)
 
@@ -36,7 +37,9 @@ def register(request):
         if f.is_valid():
             f.save()
             messages.success(request, 'Account created successfully')
-            return redirect('register')
+            new_user = authenticate(username=f.cleaned_data['username'], password=f.cleaned_data['password1'],)
+            login(request, new_user)
+            return redirect('/getPositions/')
 
     else:
         f = UserCreationForm()
