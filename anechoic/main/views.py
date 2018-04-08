@@ -26,6 +26,10 @@ def getPositions(request, username):
         context['positionQuestions'] = Position.objects.all()
         return render(request, 'main/positionSurvey.html', context=context)
 
+def dashboard(request, username):
+    context = {}
+    return render(request, 'main/dashboard.html', context)
+
 def register(request):
     if request.method == 'POST':
         f = UserCreationForm(request.POST)
