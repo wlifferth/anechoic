@@ -1,0 +1,22 @@
+<div class="content-box">
+<div class="row input-row">
+  <div class="content-box-title">
+    {{ position.statement }}
+  </div>
+  <div class="col-xs-2 col-xs-offset-6">
+    Disagree
+  </div>
+  <div class="col-xs-2 col-xs-offset-2 text-right">
+    Agree
+  </div>
+  <div class="col-xs-4">
+    <label for="p{{ position.id }}">Do you agree with the above statement?</label>
+  </div>
+  <div class="col-xs-2">
+    <output name="p{{ position.id }}rating" id="p{{ position.id }}rating" class="slider-label text-right" for="p{{ position.id }}">5</output>
+  </div>
+  <div class="col-xs-6">
+    <input type="range" id="p{{ position.id }}" class="slider" name="p{{ position.id }}" min="0" max="10" value="5" oninput="p{{ position.id }}rating.value=p{{ position.id }}.value">
+  </div>
+</div>
+</div>

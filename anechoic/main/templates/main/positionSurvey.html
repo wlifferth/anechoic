@@ -1,0 +1,29 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+    What do you think?
+{% endblock %}
+{% block body %}
+<div id="body-content">
+    <form method="POST">
+        {% csrf_token %}
+        {% for position in positionQuestions %}
+        {% include 'main/positionQuestion.html' %}
+        {% endfor %}
+        <div class="content-box">
+          <div class="row input-row">
+            <div class="content-box-title">
+                That wasn't so bad, was it?
+            </div>
+            <div class="col-xs-12">
+            Thanks for walking through that with us! If you'd like to go back and check your answers you can press the "previous" button. Otherwise hit "Submit!" and we're off to the races.
+          </div>
+        <div class="col-xs-4 col-xs-offset-4">
+        <button type="submit" class="center-button material-button">Submit!</button>
+      </div>
+      </div>
+    </div>
+</div>
+    </form>
+</div>
+{% endblock %}
