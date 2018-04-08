@@ -30,6 +30,9 @@ class UserPosition(models.Model):
     position = models.ForeignKey(Position, on_delete=models.CASCADE, verbose_name="Position this user has commented on")
     rating = models.IntegerField(verbose_name="This users level of agreement with the position")
 
+    def __str__(self):
+        return "UserPosition: {}/{}/{}".format(self.user.username, self.position.statement, self.rating)
+
 class ArgumentForm(ModelForm):
     class Meta:
         model = Argument
